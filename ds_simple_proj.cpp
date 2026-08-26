@@ -38,7 +38,7 @@ int main()
     sys.place[3]="Modern Hospital, Pune";
     
     sys.ID[4]=105;
-    sys.name[4]="Ajit";
+    sys.name[4]="Ajinkya";
     sys.gender[4]="Male";
     sys.place[4]="D. Y. Patil Hospital, Kolhapur";
 
