@@ -44,31 +44,71 @@ if (isset($_POST["id"]))
     <title>Blood Donation Management System</title>
 </head>
 
-<body bgcolor="lime">
+<body bgcolor="lightgray">
 
-<h1><center>Blood Donation Management System</center></h1>
+<center>
 
-<p>Enter Donor ID to see donation history.</p>
+    <h1>Blood Donation Management System</h1>
 
-<form method="post">
+    <hr>
 
-    Enter ID:
-    <input type="number" name="id">
+    <h2>Donor History</h2>
 
-    <input type="submit" value="Search">
+    <p>Enter the Donor ID to check donation history.</p>
 
-</form>
+    <form method="post">
 
-<br>
+        <table border="1" cellpadding="10">
 
-<?php
+            <tr>
+                <td><b>Donor ID</b></td>
+                <td>
+                    <input type="number" name="id" required>
+                </td>
+            </tr>
 
-if ($result != "")
-{
-    echo "<pre>";
-    echo $result;
-    echo "</pre>";
-}
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Search Donor">
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+
+    <br>
+
+    <?php
+
+    if ($result != "")
+    {
+        echo "<table border='1' cellpadding='10'>";
+        echo "<tr>";
+        echo "<td><b>Donation History</b></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+        echo "<td><pre>" . $result . "</pre></td>";
+        echo "</tr>";
+
+        echo "</table>";
+    }
+
+    ?>
+
+    <br>
+
+    <hr>
+
+    <p><b>Blood Donation Management System</b></p>
+    <p>Donor Search using Binary Search</p>
+
+</center>
+
+</body>
+
+</html>
 
 ?>
 
