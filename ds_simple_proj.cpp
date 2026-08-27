@@ -6,7 +6,7 @@ int main()
     struct blood
     {
         int low = 0;
-        int high =7;
+        int high =22;
         int mid ;
         int ID[100],n[100];
         string date[100];
