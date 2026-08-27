@@ -63,7 +63,7 @@ if (isset($_POST["id"]))
             <tr>
                 <td><b>Donor ID</b></td>
                 <td>
-                    <input type="text" name="id" required>
+                    <input type="text" name="id" inputmode="numeric" pattern="[0-9]*" required>
                 </td>
             </tr>
 
