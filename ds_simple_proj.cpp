@@ -191,6 +191,7 @@ int main()
                 cout << "\nName: " << sys.name[sys.mid];
                 cout << "\nDate: " << sys.date[sys.mid];            
                 cout << "\nGender: " << sys.gender[sys.mid];
+                cout << "\nBlood Group: " << sys.bloodgrp[sys.mid];                
                 cout << "\nPlace: " << sys.place[sys.mid];
 
                 return 0;
@@ -204,5 +205,38 @@ int main()
         }
     }
     cout << "There is no history";
+class Node
+{
+    public:
+        int ID[100],n[100];
+        string date[100];
+        string bloodgrp[100];
+        string name[100];
+        string place[100];
+        string gender[100];
+        Node*next;
+        Node(int value)
+        {
+            ID[100]=value;
+            next = NULL;
+        }
+};
+class donor
+{
+    Node* head;
+    donor()
+    {
+        head = NULL;
+    }
+    void insert(int value)
+    {
+        Node* n1 = new Node(value);
+        if(head==NULL)
+        {
+            head = n1;
+            return;
+        }
+    }
+};
     return 0;
 }
