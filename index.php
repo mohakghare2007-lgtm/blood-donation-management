@@ -95,8 +95,6 @@ if (isset($_POST["id"]))
         echo "</table>";
     }
 
-    ?>
-
     <br>
 
     <hr>
