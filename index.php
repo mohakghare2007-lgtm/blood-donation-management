@@ -107,8 +107,3 @@ if (isset($_POST["id"]))
 </body>
 
 </html>
-
-?>
-
-</body>
-</html>
