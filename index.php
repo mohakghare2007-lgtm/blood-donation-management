@@ -35,7 +35,7 @@ if (isset($_POST["id"]))
         $result = "C++ program could not be started.";
     }
 }
-?>
+
 
 <!DOCTYPE html>
 <html>
