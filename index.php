@@ -1,10 +1,11 @@
+
 <?php
 
 $result = "";
 
-if (isset($_POST["id"]))
-{
-    $id = $_POST["id"];
+if (isset($_POST["id"])) {
+
+    $id = trim($_POST["id"]);
 
     $exe = __DIR__ . "/ds_simple_proj";
 
@@ -18,30 +19,42 @@ if (isset($_POST["id"]))
         $pipes
     );
 
-    if (is_resource($process))
-    {
+    if (is_resource($process)) {
+
         fwrite($pipes[0], $id . PHP_EOL);
         fclose($pipes[0]);
 
         $result = stream_get_contents($pipes[1]);
         fclose($pipes[1]);
 
+        $error = stream_get_contents($pipes[2]);
         fclose($pipes[2]);
 
         proc_close($process);
-    }
-    else
-    {
+
+        if ($result == "" && $error != "") {
+            $result = "C++ Error: " . $error;
+        }
+
+    } else {
+
         $result = "C++ program could not be started.";
     }
 }
 
+?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Blood Donation Management System</title>
+
 </head>
 
 <body bgcolor="lightgray">
@@ -61,16 +74,36 @@ if (isset($_POST["id"]))
         <table border="1" cellpadding="10">
 
             <tr>
-                <td><b>Donor ID</b></td>
+
                 <td>
-                    <input type="text" name="id" inputmode="numeric" pattern="[0-9]*" required>
+                    <b>Donor ID</b>
                 </td>
+
+                <td>
+
+                    <input
+                        type="text"
+                        name="id"
+                        inputmode="numeric"
+                        pattern="[0-9]*"
+                        required
+                    >
+
+                </td>
+
             </tr>
 
             <tr>
+
                 <td colspan="2" align="center">
-                    <input type="submit" value="Search Donor">
+
+                    <input
+                        type="submit"
+                        value="Search Donor"
+                    >
+
                 </td>
+
             </tr>
 
         </table>
@@ -79,28 +112,43 @@ if (isset($_POST["id"]))
 
     <br>
 
-    <?php
+    <?php if ($result != "") { ?>
 
-    if ($result != "")
-    {
-        echo "<table border='1' cellpadding='10'>";
-        echo "<tr>";
-        echo "<td><b>Donation History</b></td>";
-        echo "</tr>";
+        <table border="1" cellpadding="10">
 
-        echo "<tr>";
-        echo "<td><pre>" . $result . "</pre></td>";
-        echo "</tr>";
+            <tr>
 
-        echo "</table>";
-    }
-?>
+                <td>
+                    <b>Donation History</b>
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <pre><?php echo htmlspecialchars($result); ?></pre>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    <?php } ?>
+
     <br>
 
     <hr>
 
-    <p><b>Blood Donation Management System</b></p>
-    <p>Donor Search using Binary Search</p>
+    <p>
+        <b>Blood Donation Management System</b>
+    </p>
+
+    <p>
+        Donor Search using Binary Search
+    </p>
 
 </center>
 
